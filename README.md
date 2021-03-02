@@ -1,22 +1,13 @@
-# `Gamepad.Coder`'s [AutoHotkey_Projects]
-
-<br />
-
+# Gamepad.Coder's [AutoHotkey_Projects]
 
 <br />
 
 # About this Repository
 
-
-<br />
-
 ## Personal Projects in AutoHotkey (a.k.a. "AHK" or "ahk")<br>
 - Framework for building GUI applications in AutoHotkey
 - Utilities (mainly productivity apps)
 - How-To Tutorials & Example Scripts
-
-
-<br />
 
 ## License 
 
@@ -33,8 +24,6 @@ No cost. No attribution necessary. No worries.
 
 https://creativecommons.org/share-your-work/public-domain/cc0/
 
-
-<br />
 
 ## Code contained in this repository written by other authors:
 
@@ -55,12 +44,8 @@ If eithor author would prefer I remove their code from this repo and link to the
 <br />
 
 
-<br />
-
 # About my Object-Oriented Graphical User Interface Framework.
 
-
-<br />
 
 ## About:
 
@@ -68,7 +53,6 @@ The bulk of the code here is for a framework I wrote for AutoHotkey v1 to encaps
 
 I've tried to avoid using external libraries and low-level .dll calls to windows when possible, to make the framework easy to understand and easy to extend for those with a minor to modest background in programming (or for those coming from other languages).
 
-<br />
 
 ## Documentation:
 
@@ -77,7 +61,6 @@ This page is a draft, [~] note to self to add a bit more to this blurb.
 A manual for this framework can be found here:<br>
 https://gamepad-coder.github.io/Documentation.html
 
-<br />
 
 ## Future for this framework:
 
