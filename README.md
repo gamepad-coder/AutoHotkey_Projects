@@ -4,9 +4,9 @@
          /*       Gamepad.Coder's [AutoHotkey_Projects]        */
         /*                                                    */
        /******************************************************/
-      /*  last update:   [2021_03_01]  @  [06-31-26 PM]     */
+      /*  last update:   [2021_03_01]  @  [09-13-44 PM]     */
      /******************************************************/
-       
+
 ```
 
 <br />
@@ -18,14 +18,14 @@
 - Utilities (mainly productivity apps)
 - How-To Tutorials & Example Scripts
 
-## License 
+## License
 
 Feel free to explore and reuse any of my code in this repository, all open source, all free.
 
 GitHub doesn't allow Community Commons as a license when configuring a repository.<br>
 So this repo displays the MIT license, but my scripts will display either "[Community Commons Zero](https://creativecommons.org/share-your-work/public-domain/cc0/)" or "cc0".
 
-For simplicity, just assume all of the AutoHotkey code in this repo (where I am the sole author) is "cc0" and therefore in the Public Domain. (Any code not written by me will explicity state the author and the source at the top of the file's contents). 
+For simplicity, just assume all of the AutoHotkey code in this repo (where I am the sole author) is "cc0" and therefore in the Public Domain. (Any code not written by me will explicitly state the author and the source at the top of the file's contents).
 
 All of my personally written AutoHotkey code, to date, is exclusively licensed under cc0.
 
@@ -58,7 +58,7 @@ If eithor author would prefer I remove their code from this repo and link to the
 
 ## About:
 
-The bulk of the code here is for a framework I wrote for AutoHotkey v1 to encapsulate its GUI (Graphical User Interface) commands inside classes and objects. It's far from complete in covering every GUI command and use case, but for my purposes it's proven to be time-saving and fairly robust. 
+The bulk of the code here is for a framework I wrote for AutoHotkey v1 to encapsulate its GUI (Graphical User Interface) commands inside classes and objects. It's far from complete in covering every GUI command and use case, but for my purposes it has proven to be time-saving and fairly robust.
 
 I've tried to avoid using external libraries and low-level .dll calls to windows when possible, to make the framework easy to understand and easy to extend for those with a minor to modest background in programming (or for those coming from other languages).
 
@@ -75,7 +75,7 @@ https://gamepad-coder.github.io/Documentation.html
 
 I've since moved to Godot for building hobby applications, but I'm uploading this project in case anyone wants to use or extend it for their own applications.
 
-Further, AutoHotkey v2 (still in it's alpha stage) will contain built-in object-oriented design for its GUI functionality. So if v2 becomes the primarily used AHK distribution, this framework will be halfway obsolete (however my TreeView extension within the framework is still novel and would remain useful). Conversely, AutoHotkey v1 and AutoHotkey v2 have several syntax differences, so this framework will still be useful to anyone who wants to use object-oriented design on top of their existing code without rewriting all of it into AutoHotkey v2's syntax.
+Further, AutoHotkey v2 (still in its alpha stage) will contain built-in object-oriented design for its GUI functionality. So if v2 becomes the primarily used AHK distribution, this framework will be halfway obsolete (however my TreeView extension within the framework is still novel and would remain useful). Conversely, AutoHotkey v1 and AutoHotkey v2 have several syntax differences, so this framework will still be useful to anyone who wants to use object-oriented design on top of their existing code without rewriting all of it into AutoHotkey v2's syntax.
 
 If I ever do return to this project there are a lot of quality-of-life functions I'd like to include for automatic Control positioning and allowing fast re-arrangement (presently it's a bit of a chore to change a GUI interface built using AHK once the window has been created).
 
