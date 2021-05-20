@@ -1,0 +1,299 @@
+		
+==================================================	
+About the settings file
+==================================================	
+
+	program_launcher.ahk's settings are stored in 
+	program_launcher_saved_phrases.ini
+
+	When program_launcher does not detect 
+	program_launcher_saved_phrases.ini in its folder 
+	program_launcher will generate this settings .ini file 
+	with default values.
+
+	More details can be found below
+	and in the settings file itself.
+
+		
+==================================================
+Edge case Overview:
+
+Notes about (;) semicolons and ( ) spaces 
+in the settings file:
+==================================================	
+
+	COMMENTS IN THE SETTINGS FILE: 
+
+		Any line in program_launcher_saved_phrases.ini
+		which begins with a semicolon (;) will be ignored or "commented out" 
+		when program_launcher reads its settings.
+
+		Any line beginning with spaces and tabs in the settings file are ignored,
+		and lines are parsed beginning at the first non-whitespace character of the line.
+		
+		To begin a command with one or more semicolons or 
+		to begin a command with one or more leading spaces
+		(or a combination of both)
+		start the command with the phrase:
+		
+			\BEGIN_LITERAL\
+			
+		For more details:
+		See the COMMANDS sub-section in the SYNTAX section below.
+		
+		
+	HOW COMMANDS ARE READ INTO THE PROGRAM:
+		
+		Each command takes up only one line in the settings file.
+		Each command is located in the 'commands[]' section.
+		Each command begins with one or more characters, 
+		 then ends the line with a (:) colon and an Action ID.
+
+		program_launcher ignores lines in the settings file
+		which begin with a (;) semicolon.
+		
+		program_launcher will ignore leading spaces and tabs 
+		when reading commands from its settings file.
+		
+		
+		program_launcher determines which part (of a non-commented line)
+		is the command phrase by:
+		
+			[1] Ignoring all spaces and tabs at the beginning of a line
+			[2] Reading from the first non-whitespace character onward until
+			[3] it finds a colon and a number at the end of the line.
+			
+		[1] and [3] are stripped, and [2] becomes the resulting command.
+		
+		If you wish to use leading spaces or semicolons for commands, 
+		use the "\BEGIN_LITERAL\" flag (details below).
+
+
+=======================================================
+Conventions for syntax annotations in the next section:
+=======================================================
+	
+	"Double quotes signify verbatim text needed here".
+	'Single quotes represents a class of acceptable input'.
+	Unquoted phrases reprsent datatypes 
+	 like integer numbers (possibly with clarifying parenthesis).
+	
+	
+	
+===============================================
+SYNTAX for program_launcher_saved_phrases.ini:
+===============================================
+	
+	SETTINGS 
+		
+		Syntax:
+			
+			"settings["
+				'setting_name' ":" int (for icon)
+				'setting_name' ":" 'modifierkey1' 'a space character' 'key' (for hotkeys)
+				'setting_name' ":" 'modifierkey1' 'a space character' 'modifierkey2' 'a space' 'key' (for hotkeys)
+			"]"
+			
+			Note:
+				
+				For valid keynames, see:
+					https://www.autohotkey.com/docs/KeyList.htm
+				
+				For information about hotkeys using AutoHotkey, see:
+					https://www.autohotkey.com/docs/Hotkeys.htm
+		
+		Example:
+		
+			settings[
+				icon:123
+				hotkey_for_commandline_popup:control alt space
+				hotkey_for_quit :            shift ctrl win q
+			]
+		
+		Available:
+		
+			[1]  "hotkey_for_commandline_popup" : 'mod1' .. 'modn' 'key'
+			[2]  "hotkey_for_quit" : 'mod1' 'mod2' etc 'key'
+			[3]  "icon" : int
+		
+			Minimum:
+				
+				[1] is required.
+				[2] and [3] are optional.
+		
+		Syntax Rules:
+		
+			Capitalization doesn't matter.
+			Leading tabs or spaces are optional (and ignored).
+			Hotkey key names must be separated from one another by spaces.
+			Hotkey key names must be from the list here: 
+				https://www.autohotkey.com/docs/KeyList.htm
+			Spaces directly surrounding the ":" colon 
+			 in the SETTINGS[] section of program_launcher_saved_phrases.ini
+			 are optional and ignored. 
+			(Spaces in the "COMMANDS[]" settings section 
+			 surrounding the final ":" do matter. See next subsection.)
+	
+	
+	COMMANDS
+		
+		Syntax:
+		
+			"commands["
+				'command word or phrase' ":" int (unique action ID)
+				'command word or phrase' ":" "Quit" 
+				'command word or phrase' ":" "Settings" 
+				
+			"]"
+			
+		
+		Example:
+
+			commands[
+				Play a ~groovy~ tune:234
+			]
+		
+		
+		Syntax Rules: 
+			
+			Each command can only be one line long. 
+			Each command can contain any typable symbol.
+			Each command must be followed by a colon and a whole number.
+									
+			The colon + wholenumber pair (": 12" or ":23") correspond to an Action ID,
+			and any spaces to the right of this colon are optional and ignored.
+			
+			Whitespace to the left of the (:) colon will be considered part of the command.
+			
+				For example:
+					"command for music: 123" and 
+					"command for music : 123"
+				This first command requires 'c' as the last character.
+				This second command requires a space as the last character.
+			
+			Special (non-int) Action IDs:
+			
+				There are only two actions which have no ID number: QUIT and SETTINGS.
+				These are hardcoded to quit the program 
+				or pull up the interactive settings window, respectively.
+				
+				For commands which trigger ": Quit" or ":Settings", capitalization is ignored,
+				but there must still be a (:) colon between the command and the action "ID".
+				
+			Leading Spaces: 
+			
+				Leading tabs or spaces at the beginning 
+				of commands in the settings file are ignored.				
+			
+			Leading Semicolons:
+			
+				Lines beginning with a semicolon are ignored.
+				Lines beginning with tabs or spaces then a semicolon are ignored.
+		
+		
+		The \BEGIN_LITERAL\ flag:
+		
+			How: 
+			
+				To begin a command with a semicolon or 
+				to begin a command with whitespace 
+				
+				   (1) Add the phrase "\BEGIN_LITERAL\" 
+					   (with (\) backslashes, without (") quotes)
+					   to the beginning of the command, 
+				
+				   (2) type whatever you want the command to be verbatim, 
+				   
+				   (3) then finish the line with a colon and an action ID number.
+			
+			
+			Why: 
+			
+				program_launcher ignores lines beginning with a semicolon (ex: ";line...")
+				when reading the file program_launcher_saved_phrases.ini.
+				
+				This allows lines to be "commented out" instead of deleting them, 
+				and allows the user to add notes.
+				
+				If the user desires a command which begins with a semicolon (and or whitespace), 
+				add the text
+					\BEGIN_LITERAL\
+				to the beginning of the command	(including the (\) backslashes).
+			
+				This allows the semicolon comment syntax to remain consistent
+				without adding a multitude of additional rules for parsing.
+				
+			 
+			 Example + Elaboration:
+
+				Pretend the user wants to 
+				   (1) open the commandline popup,
+				   (2) type ";calculator" (excluding the (") quotes)
+				   (3) hit enter
+				   (4) and have action 235 run.
+				
+				The following setting will accomplish that:
+				
+					commands[
+						Play a ~groovy~ tune:234
+						\BEGIN_LITERAL\;calculator:235
+					]
+				
+				Now pretend, for reasons undisclosed to us,
+				the user wants to type:
+				
+					;\BEGIN_LITERAL\;calculator:234
+				 
+				to trigger action 235.
+				
+				
+				The following setting will accomplish that:
+				
+					commands[
+						Play a ~groovy~ tune:234
+						\BEGIN_LITERAL\;\BEGIN_LITERAL\;calculator:234:235
+					]
+				
+				program_launcher will store everything between the first
+					\BEGIN_LITERAL\
+				and the final 
+					:235
+				as the command which triggers action 235.
+				
+				
+	
+	ACTIONS
+			
+		Syntax:
+		
+			int ID, "Folder", "C:/drive/path"
+			int ID, "Program", quoted full path, (optional argument) quoted full path
+		
+		
+		Example:
+		
+			236, Program, "C:/apps/winamp.exe", "C:/music/GroovySpoon.mp3"
+			237, Folder, "D:/music/My Favorite Songs/"
+			
+
+		Syntax Rules:
+		
+			Actions are single lines.
+			No two actions have the same ID
+			
+			File paths (to folders or programs) must be absolute and "quoted".
+			An action does one of three things:
+			[1]	    Open a folder in Windows Explorer.
+			[2]	    Open a program 
+			[3]     Trigger an internal routine 
+					(for now, only "Quit" and "Settings")
+			
+			Each action in category [1] or [2] must have an entry in the settings file, 
+			but category [3] actions are referenced directly by commands 
+			and are the only actions without an ID. 
+			
+			Trailing slash for folders is optional.
+		
+		
+
+
